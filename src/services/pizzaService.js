@@ -14,3 +14,14 @@ export const getById = async (id) => {
 
     console.log(results);
 }
+export const createPizza = async (pizza) =>{
+
+    const conn = await sql.connect(configDB);
+    const results = await conn.request()
+    .input("pNombre", pizza.nombre)
+    .input("pLibreDeGluten", pizza.libreDeGluten)
+    .input("pImporte", pizza.precio)
+    .input("pDescripcion", pizza.descripcion)
+    .query('INSERT INTO Pizzas (Nombre, LibreGluten, Importe, Descripcion) VALUES (@pNombre, @pLibreDeGluten, @pImporte, @pDescripcion)');
+
+}

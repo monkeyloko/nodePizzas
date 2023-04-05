@@ -1,3 +1,10 @@
-import { getAll, getById } from './services/pizzaService.js';
+import Pizza from './models/pizza.js';
+import { createPizza, getAll, getById } from './services/pizzaService.js';
 //await getAll();
-await getById(3);   
+//await getById(3);   
+const pizza = new Pizza();
+pizza.nombre = 'test';
+pizza.descripcion = 'test';
+pizza.precio = 1000;
+pizza.libreDeGluten = true;
+await createPizza(pizza);
