@@ -7,6 +7,7 @@ export const getAll = async () => {
     const results = await conn.request().query('SELECT * FROM Pizzas')
 
     console.log(results);
+    return results;
 }
 export const getById = async (id) => {
     const conn = await sql.connect(configDB);

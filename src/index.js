@@ -15,8 +15,13 @@ pizza.libreDeGluten = true;
 //await updatePizza(pizza,12);
 
 app.get('/',  async (req, res)=> {
-    const getalled = await getAll();
-    res.send(await getAll());
+    const getA = await getAll();
+    if (getA == null) {
+        res.status(400).send(getA);
+    } else{
+        res.status(200).send(getA)
+    }
+
     
 });
 app.listen(port,() =>{
