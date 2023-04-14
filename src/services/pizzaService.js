@@ -25,3 +25,21 @@ export const createPizza = async (pizza) =>{
     .query('INSERT INTO Pizzas (Nombre, LibreGluten, Importe, Descripcion) VALUES (@pNombre, @pLibreDeGluten, @pImporte, @pDescripcion)');
 
 }
+export const updatePizza = async (pizza, id) =>{
+
+    const conn = await sql.connect(configDB);
+    const results = await conn.request()
+    .input("pId",id)
+    .input("pNombre", pizza.nombre)
+    .input("pLibreDeGluten", pizza.libreDeGluten)
+    .input("pImporte", pizza.precio)
+    .input("pDescripcion", pizza.descripcion)
+    .query('UPDATE Pizzas SET Nombre = @pNombre, LibreGluten = @pLibreDeGluten, Importe = @pImporte, Descripcion = @pDescripcion WHERE Id = @pId');
+
+}
+export const deleteById = async (id) => {
+    const conn = await sql.connect(configDB);
+    const results = await conn.request().input("pId",id).query('DELETE FROM Pizzas WHERE id = @pId')
+
+    console.log(results);
+}
