@@ -29,7 +29,7 @@ app.get('/api/:id',  async (req, res)=> {
     
 });
 */
-app.post('/api/create', async (req, res)=>{
+/*app.post('/api/create', async (req, res)=>{
    
 
     const pizza = new Pizza();
@@ -41,6 +41,25 @@ app.post('/api/create', async (req, res)=>{
     const createP = await createPizza(pizza);
     res.send(createP); 
     
+});
+*/
+app.put('/api/update/:id', async (req, res)=>{
+   
+
+    const id = req.params.id;
+    if(id != req.body.Id){
+        res.status(400);
+    }
+    const pizza = new Pizza();
+    pizza.nombre = req.body.Nombre;
+    pizza.libreGluten = req.body.LibreGluten;
+    pizza.precio = req.body.Importe;
+    pizza.descripcion = req.body.Descripcion
+    const update = await updatePizza(pizza, id);
+    if(update.rowsAffected[0] == 0){
+        res.status(404);
+    }
+    res.send(update); 
 });
 
 

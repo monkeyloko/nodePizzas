@@ -30,7 +30,6 @@ export const createPizza = async (pizza) =>{
 
 }
 export const updatePizza = async (pizza, id) =>{
-
     const conn = await sql.connect(configDB);
     const results = await conn.request()
     .input("pId",id)
@@ -39,7 +38,8 @@ export const updatePizza = async (pizza, id) =>{
     .input("pImporte", pizza.precio)
     .input("pDescripcion", pizza.descripcion)
     .query('UPDATE Pizzas SET Nombre = @pNombre, LibreGluten = @pLibreDeGluten, Importe = @pImporte, Descripcion = @pDescripcion WHERE Id = @pId');
-
+    if(results)
+    return results;
 }
 export const deleteById = async (id) => {
     const conn = await sql.connect(configDB);
