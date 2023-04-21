@@ -44,6 +44,5 @@ export const updatePizza = async (pizza, id) =>{
 export const deleteById = async (id) => {
     const conn = await sql.connect(configDB);
     const results = await conn.request().input("pId",id).query('DELETE FROM Pizzas WHERE id = @pId')
-
-    console.log(results);
+    return results;
 }
